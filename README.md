@@ -27,11 +27,28 @@ Each DNS requests will be sent to your own DNS server. If your DNS server knows 
 - wget CLI
 - nslookup CLI
 
-## Step 1: Make your blackhole website
+## Step 1: Network configuration
+### Give a fixed IP to your DNS Server
+Here again there is multiple solution:
+- Configure your device (ifcfg, iface)
+- Configure your DHCP using mac adress to book an IP (solution I chose)
+
+## Step 2: Make your blackhole website
 There is multiple option to do that:
 - Using [apache] (https://www.apache.org/)
 - Using [nginx] (http://nginx.org/en/docs/beginners_guide.html)
 - Using [nodejs] (https://nodejs.org/en/). To use an easy and ready solution please see https://github.com/djiworks/blackhole_server
+
+## Step 3: Install bind
+```bash 
+sudo apt-get update
+sudo apt-get install bind9
+sudo apt-get clean
+```
+
+## Step 4: Configure bind
+## Step 5 (optional): Update bind conf
+## Step 6: Final network configuration
 
 ## Sources
 - [Geekfault - DNS Menteur] (http://geekfault.org/2010/04/24/dns-menteur/6/)
