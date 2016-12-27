@@ -22,6 +22,11 @@ Instead of being tracked and flooded by ads or tracking services while surfing o
 You will make a DNS service and a http/https service (on the same server or not). This http/https services named blackhole will be a simple empty html page.
 Each DNS requests will be sent to your own DNS server. If your DNS server knows this site as a junk one, it will filter by redirecting it to your own blackhole website.
 
+## Prerequisite
+- A linux distro
+- wget CLI
+- nslookup CLI
+
 ## Step 1: Make your blackhole website
 There is multiple option to do that:
 - Using [apache] (https://www.apache.org/)
