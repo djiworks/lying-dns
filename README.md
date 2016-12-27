@@ -2,7 +2,7 @@
 Make a lyning dns to filter ad servers.
 
 ## Main goal
-Instead of being tracked and flooded by ads or tracking services while surfing on the Internet, your lying DNS will redirect these requests to your own local blackhole website.
+Instead of being tracked and flooded by ads or tracking services while surfing on the Internet, your lying DNS will redirect these requests to your own local blackhole websi
 
 ### Benefits
 - Stop being tracked by analytics (or stats) services while surfing a a simple webpage.
@@ -13,10 +13,15 @@ Instead of being tracked and flooded by ads or tracking services while surfing o
 
 ### Drawbacks
 - Lying DNS alters Net Neutrality because you finally filter contents.
-- You need a H24 hardware to host your DNS
-- only work on LAN (but you can do it on a personal VPN)
+- You need a H24 hardware to host your DNS and your blackhole website
+- DNS databases should be updated frequently
+- Only work on LAN (but you can do it on a personal VPN)
+- Need actually a secondary DNS server for unkown website (to not get  "Website not found")
 
 ## How it works
-Each DNS request will be sent to your own DNS server to filter some known ad servers and be redirected to your own blackhole website.
+You will make a DNS service and a http/https service (on the same server or not). This http/https services named blackhole will be a simple empty html page.
+Each DNS requests will be sent to your own DNS server. If your DNS server knows this site as a junk one, it will filter by redirecting it to your own blackhole website.
+
 ## Sources
 - [Geekfault - DNS Menteur] (http://geekfault.org/2010/04/24/dns-menteur/6/)
+- [PGL yoyo] (https://pgl.yoyo.org/adservers/)
