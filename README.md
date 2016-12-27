@@ -47,6 +47,34 @@ sudo apt-get clean
 ```
 
 ## Step 4: Configure bind
+### Configure a local zone
+Go in bind configuration directory `cd /etc/bind/`
+
+First, backup your default file `sudo cp named.conf.local named.conf.local.bak`
+
+Edit then, the named.conf.local file adding:
+```
+zone "blackhole.org" {
+type master;
+file "/etc/bind/db.blackhole";
+allow-update { none; };
+};
+
+zone "0.168.192.in-addr.arpa" {
+type master;
+file "/etc/bind/db.inverse.blackhole";
+allow-update { none; };
+};
+```
+### Configure the zone file
+(db.blackhole)
+
+### Add the list a blacklisted sites
+(blackhole.conf)
+
+### Configure the blackhole zone
+(named.conf)
+
 ## Step 5 (optional): Update bind conf
 ## Step 6: Final network configuration
 
