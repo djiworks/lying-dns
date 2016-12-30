@@ -25,7 +25,6 @@ Each DNS requests will be sent to your own DNS server. If your DNS server knows 
 ## Prerequisite
 - A linux distro
 - wget CLI
-- nslookup CLI
 
 ## Step 1: Network configuration
 ### Give a fixed IP to your DNS Server
@@ -118,7 +117,7 @@ At this step you should now be able to visit your blackhole using your browser t
 `ping blackhole.org` should return the IP of your DNS server.
 
 ## Step 6 (optional): Update bind conf
-As the provided list (pgl.yoyo.org) is updated frequently,  
+As the provided list (pgl.yoyo.org) is updated frequently, you can easily create a bash script to download the file, and restart your dns service automatically using a cron job for example.
 
 ## Sources
 - [Geekfault - DNS Menteur] (http://geekfault.org/2010/04/24/dns-menteur/6/)
