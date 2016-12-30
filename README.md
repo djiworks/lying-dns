@@ -68,17 +68,43 @@ file "/etc/bind/db.inverse.blackhole";
 allow-update { none; };
 };
 ```
+/!\ 0.168.192.in-addr.arpa should be replaced by the reverse IP of your network.
+
 ### Configure the zone file
-(db.blackhole)
+
+Create a db.blackhole file into /etc/bind:
+```
+$TTL	86400
+@	IN	SOA	localhost. root.localhost. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			  86400 )	; Negative Cache TTL
+;
+@	IN	NS	blackhole.
+@	IN	A	192.168.0.2
+*	IN	A	192.168.0.2
+```
+To get more information about meaning of each line please refer to [DNS Record Types](https://help.ubuntu.com/community/BIND9ServerHowto).
 
 ### Add the list a blacklisted sites
-(blackhole.conf)
+Now to redirect all known junk websites on your blackhole, create a blackhole.conf file.
+Add a line like: `zone "junk-website.com" { type master; notify no; file "/etc/bind/db.blackhole"; };` for each website you want to filter.
+
+To catch them all, simply run `wget -O blackhole.conf "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=bindconfig&showintro=0&mimetype=plaintext&zonefilename=/etc/bind/db.blackhole"`
+
+Please take a look on the content of [this list](https://pgl.yoyo.org/adservers/serverlist.php?hostformat=bindconfig&showintro=0&mimetype=plaintext&zonefilename=/etc/bind/db.blackhole) before. And see if you trust or not this list.
 
 ### Configure the blackhole zone
 (named.conf)
 
 ## Step 5 (optional): Update bind conf
 ## Step 6: Final network configuration
+ At this step you should be able to visit your blackhole using your browser typing http://blackhole.org.
+
+Other check, `named-checkzone blackhole.org db.blackhole` should return OK.
+
 
 ## Sources
 - [Geekfault - DNS Menteur] (http://geekfault.org/2010/04/24/dns-menteur/6/)
