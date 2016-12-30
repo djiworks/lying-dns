@@ -97,14 +97,28 @@ To catch them all, simply run `wget -O blackhole.conf "https://pgl.yoyo.org/adse
 Please take a look on the content of [this list](https://pgl.yoyo.org/adservers/serverlist.php?hostformat=bindconfig&showintro=0&mimetype=plaintext&zonefilename=/etc/bind/db.blackhole) before. And see if you trust or not this list.
 
 ### Configure the blackhole zone
-(named.conf)
+Once you have your list, add it to your DNS configuration using the named.conf file appending `include "/etc/bind/blackhole.conf";`
 
-## Step 5 (optional): Update bind conf
-## Step 6: Final network configuration
- At this step you should be able to visit your blackhole using your browser typing http://blackhole.org.
+## Step 5: Final network configuration
+### Check bind configuration
+Run `named-checkzone blackhole.org db.blackhole`. It should return OK.
 
-Other check, `named-checkzone blackhole.org db.blackhole` should return OK.
+### Configure DNS on the server itself
+Sometimes you will need to reconfigure the DNS settings of the server itself to erase its own DNS adress.
+To do that, edit /etc/resolv.conf by overwriting all the file and putting:
+```
+search blackhole.org
+domain blackhole.org
+nameserver 192.168.0.2
+# comment all other nameserver
+```
+Finally, restart your network services using `sudo /etc/init.d/networking restart`
 
+At this step you should now be able to visit your blackhole using your browser typing http://blackhole.org.
+`ping blackhole.org` should return the IP of your DNS server.
+
+## Step 6 (optional): Update bind conf
+As the provided list (pgl.yoyo.org) is updated frequently,  
 
 ## Sources
 - [Geekfault - DNS Menteur] (http://geekfault.org/2010/04/24/dns-menteur/6/)
