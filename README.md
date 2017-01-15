@@ -2,7 +2,9 @@
 Make a lyning dns to filter ad servers.
 
 ## Main goal
-Instead of being tracked and flooded by ads or tracking services while surfing on the Internet, your lying DNS will redirect these requests to your own local blackhole website
+Instead of being tracked and flooded by ads or tracking services while surfing on the Internet, your lying DNS will redirect these requests to your own local blackhole website.
+An easyier way to do the same thing: [Pi-Hole](https://pi-hole.net/)
+
 
 ### Benefits
 - Stop being tracked by analytics (or stats) services while surfing on a simple webpage.
